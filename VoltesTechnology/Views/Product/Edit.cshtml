@@ -1,0 +1,56 @@
+﻿@model VoltesTechnology.Models.Domain.Product
+
+@{
+
+}
+<form class="w-40" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <h2 class="pb-10">Update Products</h2>
+    <input type="hidden" class="input" asp-for="Id">
+    <input type="hidden" class="input" asp-for="ProductImage">
+
+    <div class="input-container">
+        <label asp-for="ProductName" class="w-40">Product Name</label>
+        <input type="text" class="input" asp-for="ProductName">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ProductName"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ImageFile" class="w-40">Image</label>
+        <input type="file" class="input" asp-for="ImageFile">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ProductName"></span>
+    </div>
+
+    <div class="input-container">
+        <label for="Categories" class="w-40">Category</label>
+        <select asp-items="Model.MultiCategoryList" class="input" asp-for="Categories" multiple>
+            <option value="">--Select--</option>
+        </select>
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="Categories"></span>
+    </div>
+
+    <div class="input-container">
+        <label asp-for="ProductPrice" class="w-40">Product Price</label>
+        <input type="number" class="input" asp-for="ProductPrice">
+    </div>
+    <div class="message-box pd-x-28 error">
+        <span asp-validation-for="ProductPrice"></span>
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert mb-1">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div class="input-container">
+        <button class="btn btn-default" type="submit">Save</button>
+        <a class="btn btn-sec" href="/Product/ProductList">All Records</a>
+    </div>
+</form>

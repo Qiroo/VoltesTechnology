@@ -1,0 +1,41 @@
+﻿@model VoltesTechnology.Models.DTO.ProductListViewModel
+@{
+    Layout = "_Layout";
+}
+
+<section class="search-bar">
+    <form method="get" asp-action="Index">
+        <input type="text" name="term" placeholder="Search Here">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        <a class="btn btn-default" href="/Home/Index">Show All</a>
+    </form>
+</section>
+<section class="products">
+    @foreach(var product in Model.ProductList)
+    {
+        <div class="product-card" onclick="window.location.href='/Home/ProductDetail?productId=@product.Id'">
+        <div class="product-image">
+            <img src="/Uploads/@product.ProductImage">
+        </div>
+        <div class="product-info">
+            <h4>@product.ProductName</h4>
+            <h4>@product.CategoryNames</h4>
+            <h4>Price: ₱@product.ProductPrice</h4>
+        </div>
+    </div>
+    }
+</section>
+
+<div class="pagination">
+    @for(int i = 1; i <= Model.TotalPages; i++)
+    {
+        @if (i == Model.CurrentPage)
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term" class="active">@i</a>
+        }
+        else
+        {
+            <a href="/Home/Index?currentPage=@i&term=@Model.Term">@i</a>
+        }
+    }
+</div>

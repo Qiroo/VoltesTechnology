@@ -1,0 +1,33 @@
+﻿@model VoltesTechnology.Models.DTO.ProductListViewModel
+@{
+}
+
+<div class="tbl-container">
+    <h2>Product</h2>
+
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Product Price</th>
+            <th>Action</th>
+        </tr>
+        @foreach(var item in Model.ProductList)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.CategoryNames</td>
+                <td><img style="height: 60px; width: 80px" src="/Uploads/@item.ProductImage" /></td>
+                <td>₱@item.ProductPrice</td>
+                <td>
+                    <a href="/Product/Edit?id=@item.Id" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                    <a onclick="return window.confirm('Are you sure?')" href="/Product/Delete?id=@item.Id" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="input-container">
+        <a href="/Product/Add" class="btn btn-sec">Add</a>
+    </div>
+</div>
